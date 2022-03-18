@@ -1,0 +1,7 @@
+First open the folder kafka inside this bin then inside this windows then open cmd here and write the command zookeeper-server-start E:\BDSEARCH\kafka_212-2.7.0_config\zookeeper.properties
+
+hit enter now the zookeeper has started,
+
+now in  inside kafka\bin\windows>kafka-server-start E:\BDSEARCH\kafka_212-2.7.0_config\server.properties KAFKA SEVER HAS STARTED!!!!!
+
+now open windows power shell go inside the filebeat folder and write .\filebeat.exe -c .\filebeat.yml  

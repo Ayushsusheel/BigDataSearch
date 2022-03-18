@@ -1,3 +1,12 @@
 
+First go to Apache lounge official website ,download the binary file,Extract the zip file,
 
+There will be 3 options visible click on Apache24 then go inside this folder ,search the conf folder inside this folder you will find httpd file open this file in notepad...
+and minimize this now open Apache24 folder and copy this path (C:/Users/Apache24) and go in notepad you will find SV ROOT="GIVE YOU PATH HERE..." save the changes.
 
+Now go to Apache24 folder inside that bin folder open cmd in this path C:/Users/Apache24/bin> ./httpd.exe ----------now enter after writting this allow access.
+
+Then open any browswer and type localhost 
+If it shows It Works
+
+Great JOB!!!!!

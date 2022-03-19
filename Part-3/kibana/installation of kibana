@@ -1,0 +1,17 @@
+
+* Open \kibana-7.10.2-windows-x86_64\config kibana.yml 
+set elasticsearch.hosts: ["http://localhost:9200"] .
+
+
+*  open command prompt and change the current directory to 
+cd D:\bigdata_lab\kibana-7.10.2-windows-x86_64\bin 
+
+----->run kibana
+
+* Open browser and write into the address bar. 
+http://localhost:5601
+
+* Open browser and write into the address bar. 
+http://localhost:5601/app/management/kibana/indexPatterns
+
+* refer to Png's uploaded....

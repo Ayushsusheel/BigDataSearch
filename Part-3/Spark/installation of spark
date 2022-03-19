@@ -1,0 +1,11 @@
+* create a folder hadoop and sub folder bin of hadoop in spark-3.0.1-bin-hadoop2.7 folder 
+
+* visit to the link https://github.com/steveloughran/winutils and download winutils 
+ Past downloaded winutils file into folder spark-3.0.1-bin-hadoop2.7\hadoop\bin
+ 
+ * open command prompt and change the current directory to 
+cd D:\bigdata_lab\spark-3.0.1-bin-hadoop2.7\bin 
+ set HADOOP_HOME=D:\bigdata_lab\spark-3.0.1-bin-hadoop2.7\hadoop\bin 
+
+* inside spark bin folder run spark as spark-shell
+

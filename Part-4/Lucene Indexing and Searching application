@@ -1,0 +1,76 @@
+* Create a java project LuceneB2application1 using Eclipse. 
+* Create a package as application1. 
+* Create a new class as LuceneIndexingSearching. 
+* Write the following Lucene application code for indexing and searching -----> 
+package application1; 
+import java.io.IOException; 
+import java.nio.file.Paths; 
+import org.apache.lucene.analysis.standard.StandardAnalyzer; 
+import org.apache.lucene.document.Document; 
+import org.apache.lucene.document.Field; 
+import org.apache.lucene.document.TextField; 
+import org.apache.lucene.index.DirectoryReader; 
+import org.apache.lucene.index.IndexWriter; 
+import org.apache.lucene.index.IndexWriterConfig; 
+import org.apache.lucene.queryparser.classic.ParseException; 
+import org.apache.lucene.queryparser.classic.QueryParser; 
+import org.apache.lucene.search.IndexSearcher; 
+import org.apache.lucene.search.Query; 
+import org.apache.lucene.store.Directory; 
+import org.apache.lucene.store.FSDirectory; 
+import java.nio.file.Path; 
+import org.apache.lucene.search.ScoreDoc; 
+public class LuceneIndexingSearching { 
+public static void main(String[] args) throws IOException, ParseException { 
+ //New index
+ StandardAnalyzer analyzer = new StandardAnalyzer(); 
+ Path indexPath = Paths.get("E:\\BigDataSearch\\app1"); 
+ Directory directory = FSDirectory.open(indexPath); 
+ IndexWriterConfig config = new IndexWriterConfig(analyzer); 
+//Create a writer
+ IndexWriter indexWriter = new IndexWriter(directory, config); 
+ Document book1 = new Document(); 
+//Setting content
+book1.add(new Field("title", "Learning Spark", TextField.TYPE_STORED)); 
+book1.add(new Field("author", "Holden Karau", TextField.TYPE_STORED)); 
+ Document book2 = new Document(); 
+book2.add(new Field("title", "Spark at Work", TextField.TYPE_STORED)); 
+book2.add(new Field("author", "Thomas H. Davenport", TextField.TYPE_STORED)); 
+indexWriter.addDocument(book1); 
+indexWriter.addDocument(book2); 
+ System.out.println(indexWriter.getDocStats().maxDoc); 
+indexWriter.close(); 
+//Searching 
+ DirectoryReader directoryReader = DirectoryReader.open(directory); 
+ IndexSearcher indexSearcher = new IndexSearcher(directoryReader); 
+// Parse a simple query that searches for "Spark":
+ QueryParser parser = new QueryParser("title", analyzer); 
+ Query query = parser.parse("Spark"); 
+ ScoreDoc[] hits = indexSearcher.search(query, 10).scoreDocs; 
+ System.out.println("Found " + hits.length); 
+ System.out.println("*******************************"); 
+ for (int i = 0; i < hits.length; i++) { 
+ int docId = hits[i].doc; 
+ Document d = indexSearcher.doc(docId); 
+ System.out.println(d.get("title")); 
+ System.out.println(d.get("author")); 
+ System.out.println("-----------------------------"); 
+ } 
+ directoryReader.close(); 
+ directory.close(); 
+ } 
+ } 
+ 
+* Add the following Lucene Jar files (Lucene version 8.8.0) in classpath to import packages . 
+lucene-core-common-8.8.0 
+lucene-analyzers-common-8.8.0 
+lucene-queryparser-8.8.0
+ 
+ * 6. Run the LuceneIndexingSearching program. 
+
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,74 @@
+* Create a new class file as LuceneIndexingSearchingfromFile
+
+* Write Lucene code for Indexing and Searching from a File. 
+package application1; 
+import java.io.BufferedReader; 
+import java.io.File; 
+import java.io.FileReader; 
+import java.io.IOException; 
+import java.nio.file.Paths; 
+import org.apache.lucene.analysis.standard.StandardAnalyzer; 
+import org.apache.lucene.document.Document; 
+import org.apache.lucene.document.TextField; 
+import org.apache.lucene.index.DirectoryReader; 
+import org.apache.lucene.index.IndexReader; 
+import org.apache.lucene.index.IndexWriter; 
+import org.apache.lucene.index.IndexWriterConfig; 
+import org.apache.lucene.index.IndexWriterConfig.OpenMode; 
+import org.apache.lucene.queryparser.classic.ParseException; 
+import org.apache.lucene.queryparser.classic.QueryParser; 
+import org.apache.lucene.search.IndexSearcher; 
+import org.apache.lucene.search.Query; 
+import org.apache.lucene.search.TopDocs; 
+import org.apache.lucene.store.Directory; 
+import org.apache.lucene.store.FSDirectory; 
+public class LuceneIndexingSearchingfromFile { 
+ public static void main(String[] args) throws IOException, ParseException { 
+ // New index
+ StandardAnalyzer standardAnalyzer = new StandardAnalyzer(); 
+ String inputFilePath = "E:\\BigData\\input.txt"; 
+ String outputDir = "E:\\BigData\\output"; 
+ File file = new File(inputFilePath); 
+ Directory directory = FSDirectory.open(Paths.get(outputDir)); 
+ IndexWriterConfig config = new IndexWriterConfig(standardAnalyzer); 
+ config.setOpenMode(OpenMode.CREATE); 
+ // Create a writer
+ IndexWriter writer = new IndexWriter(directory, config); 
+ Document document = new Document(); 
+ try (BufferedReader br = new BufferedReader(new FileReader(file))) { 
+ document.add(new TextField("content", br)); 
+ writer.addDocument(document); 
+ writer.close(); 
+ } catch (IOException e) { 
+ e.printStackTrace(); 
+ } 
+ // Now let's try to search 
+ IndexReader reader = DirectoryReader.open(directory); 
+ IndexSearcher searcher = new IndexSearcher(reader); 
+ QueryParser parser = new QueryParser("content", standardAnalyzer); 
+ Query query = parser.parse("Kamala"); 
+ TopDocs results = searcher.search(query, 5); 
+ System.out.println("Hits for Name-->" + results.totalHits); 
+ // case insensitive search
+ query = parser.parse("kamala"); 
+ results = searcher.search(query, 5); 
+ System.out.println("Hits for Name -->" + results.totalHits); 
+ // search for a value not indexed
+ query = parser.parse("president"); 
+ results = searcher.search(query, 5); 
+ System.out.println("Hits for president there -->" + results.totalHits); 
+ } 
+ }
+ 
+ 
+ * Write the following contents into input.txt file. 
+Kamala Devi Harris is an American politician and attorney serving as the 49th 
+and current vice president of the United States. 
+
+* Run the LuceneIndexingSearchingfromFile
+
+
+ 
+ 
+ 
+ 

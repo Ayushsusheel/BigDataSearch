@@ -1,0 +1,15 @@
+here 
+* Create index in elasticsearch to store data from kafka 
+curl -X PUT http://localhost:9200/kafka/? preety 
+
+* Need to create logstash conf file and execute. 
+Create kafka.conf file in config folder 
+
+* Open command prompt window and change director current directory to 
+E:\BigDataSearch\logstash-7.10.2\bin 
+
+Run the command. 
+logstash -f E:\BigDataSearch\logstash-7.10.2\config\kafka.conf 
+
+
+ 

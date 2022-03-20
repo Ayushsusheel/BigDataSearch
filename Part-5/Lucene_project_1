@@ -1,1 +1,5 @@
-
+Working in ECLIPSE........
+first create a java project named as lucene hotel project
+In this create a package as tourismsearchengine ,inside this create main.java
+crete another package tourismsearchengine.database , Inside this create hotel.java and hoteltourismdatabase.java
+create another package tourismsearchengine.search ,inside this create indexer.java and searching.java

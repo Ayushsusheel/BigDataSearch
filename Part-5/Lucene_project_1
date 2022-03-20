@@ -1,5 +1,16 @@
 Working in ECLIPSE........
-first create a java project named as lucene hotel project
+first create a java project named as lucene_hotel_project
 In this create a package as tourismsearchengine ,inside this create main.java
 crete another package tourismsearchengine.database , Inside this create hotel.java and hoteltourismdatabase.java
 create another package tourismsearchengine.search ,inside this create indexer.java and searching.java
+
+lucene_hotel_project right click on this and configure build path and 
+add external jars---->lucene-analyzers-common-8.11.1
+------->lucene-core-8.11.1
+------->lucene-queryparser-8.11.1
+
+then apply and close.
+
+
+
+
